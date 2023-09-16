@@ -1,0 +1,20 @@
+.container {
+    height: 400px;
+    width: 450px;
+    border: none;
+    border-radius: 1rem;
+    background-color: #fff;
+
+}
+
+.sliderbar{
+    width: 60px;
+    height: 100%;
+    background-color: #222;
+    padding: 20px;
+    box-sizing: border-box;
+    color: #fff;
+    overflow: hidden;
+    border-radius: 1rem 0 0 1rem;
+    transition: width.75s ease;
+}

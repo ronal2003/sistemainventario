@@ -1,0 +1,80 @@
+
+
+/* comienso de estilos para el footer de quienes somos */
+
+    /* Estilos generales */
+    /* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #cacaca;
+}
+
+/* Estilos del footer */
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    margin-top: 400px;
+}
+
+.quienes-somos {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.quienes-somos h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.quienes-somos p {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* Estilos del formulario */
+.formulario {
+    max-width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f4f4f4;
+    border-radius: 5px;
+    margin-top: 20px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2); /* Agregar sombra */
+}
+
+.formulario h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.formulario label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.formulario input[type="text"],
+.formulario input[type="email"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.formulario input[type="submit"] {
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-left: 115px;
+    border-radius: 4px;
+}
+
+/* fin de estilo de quienes somos  */
+

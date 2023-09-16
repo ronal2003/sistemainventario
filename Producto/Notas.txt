@@ -1,0 +1,28 @@
+npm install sweetalert2
+
+tipos de alertas 
+Enable warning , error , success , info and question state icons
+
+Para hacer que una alerta de SweetAlert2 se desaparezca automáticamente después de 5 segundos, puedes utilizar el método `timer` proporcionado por SweetAlert2. Aquí tienes un ejemplo:
+
+```javascript
+Swal.fire({
+  title: '¡Hola!',
+  text: 'Esto es un ejemplo de SweetAlert2',
+  icon: 'success',
+  timer: 5000, // 5 segundos
+  showConfirmButton: false, // No mostrar el botón de confirmación
+  onClose: () => {
+    // Lógica adicional a ejecutar después de que la alerta se cierre
+    console.log('La alerta se cerró');
+  }
+});
+```
+
+En este ejemplo, hemos agregado la propiedad `timer` con un valor de 5000, que representa 5000 milisegundos o 5 segundos. Esto hará que la alerta se cierre automáticamente después de 5 segundos.
+
+También hemos establecido `showConfirmButton` en `false` para ocultar el botón de confirmación, ya que la alerta se cerrará automáticamente.
+
+Puedes agregar una función `onClose` opcional para ejecutar lógica adicional después de que la alerta se cierre. En el ejemplo anterior, simplemente se muestra un mensaje en la consola cuando la alerta se cierra.
+
+¡Espero que esto te sea útil! Si tienes más preguntas, no dudes en hacerlas.
