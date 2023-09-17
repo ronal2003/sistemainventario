@@ -11,8 +11,3 @@ $conexion = mysqli_connect($host, $usuario, $contrasena, $base_de_datos);
 if (!$conexion) {
     die("Error de conexión: " . mysqli_connect_error());
 }
-
-// Hacer operaciones en la base de datos...
-
-// Cerrar la conexión
-// mysqli_close($conexion);

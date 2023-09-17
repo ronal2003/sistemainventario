@@ -19,8 +19,6 @@
             echo '<a  href="../usuario/cerrarsesion.php">Cerrar Sesión</a>';
             echo '</li>';
         } else {
-            echo '<li><a href="../Inicio/inicio.php">Quienes somos</a></li>
-            <li><a href="../Producto/producto.php">Contactenos</a></li>';
             echo '<ul>
             <li>
                 <a class="nav-link" href="../usuario/usuario.php">Iniciar Sesión</a>

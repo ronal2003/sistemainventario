@@ -1,5 +1,6 @@
 <?php
 
+include '../mensajes.php';
 
 if (isset($_POST['guardar'])) {
     guardar();
@@ -23,7 +24,13 @@ function guardar()
      VALUES ('$nombre','$direccion','$telefono','$email',current_date,'CURRENT_TIME')";
 
     if ($conexion->query($consulta) === TRUE) {
-        echo "<script>alert('Datos Guardados Correctamente')</script>";
+        $respuesta =  '<div class="centered-spinner">
+        <div class="spinner-border" role="status">
+        </div>
+        <div class="mt-1 text-center">
+            <span class="sr-only">Guardando proveedor.</span>
+        </div>
+        </div>';
         header("refresh:1;proveedor.php");
     } else {
         echo "Error: " . $consulta . "<br>" . $conexion->error;
@@ -45,7 +52,7 @@ function buscar()
 
 
 
-    $consulta = "SELECT * FROM proveedores WHERE $where";
+    $consulta = "SELECT * FROM proveedores WHERE $where AND prov_estado = 'A'";
     $result = $conexion->query($consulta);
 
     // Verificar si la consulta tuvo resultados
@@ -59,7 +66,7 @@ function buscar()
             echo '<td>' . $row["prov_telefono"]  . '</td>';
             echo '<td>' . $row["prov_email"]  . '</td>';
             echo '<td>' . '<a href=editarProveedor.php?prov_codigo=' . $row['prov_codigo'] . '&prov_nombre=' . $row['prov_nombre'] . '&prov_direccion=' . $row['prov_direccion'] . '&prov_telefono=' . $row['prov_telefono'] . '&prov_email=' . $row['prov_email']  . ' class="btn btn-primary">Editar</a>
-            <a href=proveedor.php?prov_codigo=' . $row['prov_codigo'] . ' name="borrar" id="borrar" class="btn btn-danger">Borrar</a> </td></td>';
+            <a href=eliminarProveedor.php?prov_codigo=' . $row['prov_codigo'] . ' name="borrar" id="borrar" class="btn btn-danger">Borrar</a> </td></td>';
             echo '</tr>';
             echo '</tr>';
         }
@@ -88,10 +95,22 @@ function actualizar()
     $respuesta = "";
     if ($result) {
         if (mysqli_affected_rows($conexion) > 0) {
-            $respuesta = "Registro actualizado correctamente.";
+            $respuesta =  '<div class="centered-spinner">
+            <div class="spinner-border" role="status">
+            </div>
+            <div class="mt-1 text-center">
+                <span class="sr-only">Registro actualizado correctamente.</span>
+            </div>
+            </div>';
             header("refresh:2;proveedor.php");
         } else {
-            $respuesta = "Ninguna fila fue afectada";
+
+            $respuesta =  '<div class="centered-spinner">
+            <div class="spinner-border" role="status">
+            </div>
+            <div class="mt-1 text-center">
+            </div>
+            </div>';
             header("refresh:2;proveedor.php");
         }
         echo $respuesta;

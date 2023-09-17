@@ -71,7 +71,14 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Contraseña:</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="text" class="form-control" id="contrasena" name="contrasena">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo">Tipo de Usuario:</label>
+                                <select class="form-control" name="tipo">
+                                    <option value="normal">Normal</option>
+                                    <option value="administrador">Administrador</option>
+                                </select>
                             </div>
                             <button type="submit" id="guardar" name="guardar" class="btn btn-primary">Guardar Cambios</button>
                         </form>

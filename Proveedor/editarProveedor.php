@@ -8,7 +8,6 @@
     <!-- Agrega los enlaces a los archivos de Bootstrap y CSS aquí -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
-        /* Estilos para el contenedor principal */
         .container {
             border-radius: 20px;
             /* Ajusta el valor según tu preferencia */

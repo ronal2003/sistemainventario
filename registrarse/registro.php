@@ -43,6 +43,7 @@
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary">Registrar</button>
+                                <a href="../usuario/usuario.php" class="btn btn-secondary ml-2" onclick="window.history.back();">Ya tengo una cuenta</a>
                             </div>
                         </form>
                     </div>

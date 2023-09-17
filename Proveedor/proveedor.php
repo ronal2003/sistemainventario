@@ -58,19 +58,19 @@
                         <form action="controlador.php" method="POST">
                             <div class="form-group">
                                 <label for="nombre">Nombre:</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre">
+                                <input type="text" class="form-control" id="nombre" name="nombre" required>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Direccion:</label>
-                                <input type="text" class="form-control" id="direccion" name="direccion">
+                                <input type="text" class="form-control" id="direccion" name="direccion" required>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Telefono:</label>
-                                <input type="number" class="form-control" id="telefono" name="telefono">
+                                <input type="number" class="form-control" id="telefono" name="telefono" required>
                             </div>
                             <div class="form-group">
                                 <label for="descripcion">Email:</label>
-                                <input type="email" class="form-control" id="email" name="email">
+                                <input type="email" class="form-control" id="email" name="email" required>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -90,25 +90,3 @@
 <?php include '../util/footer.php'; ?>
 
 </html>
-
-<?php
-include '../conexion.php';
-$prov_codigo = (isset($_REQUEST['prov_codigo']) ? $_REQUEST['prov_codigo'] : '');
-
-$query = "DELETE FROM proveedores WHERE prov_codigo = '$prov_codigo'";
-$result = mysqli_query($conexion, $query);
-
-// Ejecutar la consulta
-$respuesta = "";
-if ($result) {
-    if (mysqli_affected_rows($conexion) > 0) {
-        $respuesta = "Registro borrado correctamente.";
-    }
-    echo $respuesta;
-} else {
-    echo "Error: " . mysqli_error($conexion);
-}
-
-// Cerrar la conexión
-$conexion->close();
-?>

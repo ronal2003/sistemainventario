@@ -48,8 +48,6 @@
         </table>
 
 
-
-
         <h2 class="mt-4">Agregar Producto</h2>
         <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#modalAgregarProducto">Agregar</button>
 
@@ -125,25 +123,3 @@
 <?php include '../util/footer.php'; ?>
 
 </html>
-
-<?php
-include '../conexion.php';
-$pro_codigo = (isset($_REQUEST['pro_codigo']) ? $_REQUEST['pro_codigo'] : '');
-
-$query = "DELETE FROM productos WHERE pro_codigo = '$pro_codigo'";
-$result = mysqli_query($conexion, $query);
-
-// Ejecutar la consulta
-$respuesta = "";
-if ($result) {
-    if (mysqli_affected_rows($conexion) > 0) {
-        $respuesta = "Registro borrado correctamente.";
-    }
-    echo $respuesta;
-} else {
-    echo "Error: " . mysqli_error($conexion);
-}
-
-// Cerrar la conexión
-$conexion->close();
-?>

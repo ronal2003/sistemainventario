@@ -1,8 +1,12 @@
 <?php
 
+
+
+
 if (isset($_POST['buscar'])) {
     informe();
 }
+
 function informe()
 {
 
@@ -31,15 +35,19 @@ function informe()
     count(p.pro_cantidad) as total
      from productos p
     LEFT join proveedores pv on (pv.prov_codigo=p.id_proveedor)
-    WHERE $where 
+    WHERE $where AND pv.prov_estado = 'A'
     GROUP BY p.pro_codigo
     LIMIT $limite";
     $result = $conexion->query($consulta);
 
 
+
     // Verificar si la consulta tuvo resultados
     if ($result->num_rows > 0) {
-        // Iterar a través de los resultados
+
+
+
+        $fila = 2;
         while ($row = $result->fetch_assoc()) {
 
             echo '<tr>';
@@ -56,5 +64,8 @@ function informe()
     }
     echo '</tr>';
 
+
+    //******************************** AQUI SE DESCARGA EL EXCEL **************************/
+    // Crear una nueva instancia de Spreadsheet
     $conexion->close();
 }

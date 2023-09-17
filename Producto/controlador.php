@@ -22,8 +22,8 @@ if (isset($_POST['borrar'])) {
 function guardar()
 {
     include '../conexion.php';
-
-    $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : '');
+    $respuesta =
+        $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : '');
     $descripcion = (isset($_POST['descripcion']) ? $_POST['descripcion'] : '');
     $cantidad_stock = (isset($_POST['cantidad_stock']) ? $_POST['cantidad_stock'] : '');
     $precio = (isset($_POST['precio']) ? $_POST['precio'] : '');
@@ -44,7 +44,7 @@ function guardar()
     } else {
         echo "Error: " . $consulta . "<br>" . $conexion->error;
     }
-
+    echo $respuesta;
     // Cerrar la conexión
     $conexion->close();
 }
@@ -63,7 +63,8 @@ function buscar()
 
     $consulta = "SELECT * FROM productos p
     LEFT JOIN proveedores pv ON (pv.prov_codigo = p.id_proveedor)
-     WHERE $where";
+     WHERE $where AND pv.prov_estado = 'A'";
+
     $result = $conexion->query($consulta);
 
     if ($result->num_rows > 0) {
@@ -78,8 +79,8 @@ function buscar()
             echo '<td>' . $row["pro_cantidad"]  . '</td>';
             echo '<td>' . $row["pro_categoria"]  . '</td>';
             echo '<td>' . $row["pro_fechac"]  . '</td>';
-            echo '<td>' . '<a href=editarProducto.php?pro_codigo=' . $row['pro_codigo'] . '&pro_nombre=' . $row['pro_nombre'] . '&pro_descrip=' . $row['pro_descrip'] . '&id_proveedor=' . $row['id_proveedor'] . '&pro_precio=' . $row['pro_precio'] . '&pro_cantidad=' . $row['pro_cantidad'] . '&pro_categoria=' . $row['pro_categoria'] . ' class="btn btn-primary">Editar</a>
-            <a href=producto.php?pro_codigo=' . $row['pro_codigo'] . ' name="borrar" id="borrar" class="btn btn-danger">Borrar</a> </td></td>';
+            echo '<td>' . '<a href=editarProducto.php?pro_codigo=' . $row['pro_codigo'] . ' class="btn btn-primary" >Editar</a>
+            <a href=eliminarproducto.php?pro_codigo=' . $row['pro_codigo'] . '  class="btn btn-danger">Borrar</a> </td>';
             echo '</tr>';
         }
     } else {
@@ -92,7 +93,7 @@ function buscar()
 function proveedor()
 {
     include '../conexion.php';
-    $consulta = "SELECT * FROM proveedores WHERE 1=1";
+    $consulta = "SELECT * FROM proveedores WHERE 1=1 AND prov_estado = 'A'";
     $result = $conexion->query($consulta);
     // $resultado = $result->fetch_assoc();
 
@@ -125,8 +126,7 @@ function actualizar()
 
     // Actualiza el valor del hash en la base de datos
     $consulta = "UPDATE productos SET pro_nombre='$nombre',pro_descrip='$pro_descrip',id_proveedor='$proveedor',pro_cantidad='$pro_cantidad',pro_precio='$pro_precio',pro_categoria='$pro_catego' WHERE pro_codigo = '$pro_codigo'";
-    echo "<pre>$consulta</pre>";
-    die();
+
     $result = mysqli_query($conexion, $consulta);
     $respuesta = "";
     if ($result) {

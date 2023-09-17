@@ -46,7 +46,7 @@
     </div>
     <br><br>
 
-    <a href="exportar_excel.php"><img src="../img/excel.png"></a>
+    <button type="button" id="reload" onclick="recargarPagina();"><a href=" "><img src="../img/excel.png"></a></button>
     <table class="table table-bordered">
         <thead>
             <tr>

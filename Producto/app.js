@@ -20,3 +20,8 @@ function validaFormularioProducto() {
 
 }
 
+
+function recargaPagina() {
+    location.reload();
+}
+
