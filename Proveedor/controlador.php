@@ -20,8 +20,8 @@ function guardar()
     $telefono = (isset($_POST['telefono']) ? $_POST['telefono'] : '');
     $email = (isset($_POST['email']) ? $_POST['email'] : '');
 
-    $consulta = "INSERT INTO proveedores (prov_nombre, prov_direccion,prov_telefono,prov_email,prov_fechac,prov_hora)
-     VALUES ('$nombre','$direccion','$telefono','$email',current_date,'CURRENT_TIME')";
+    $consulta = "INSERT INTO proveedores (prov_nombre, prov_direccion,prov_telefono,prov_email,prov_fechac,prov_hora,prov_estado)
+     VALUES ('$nombre','$direccion','$telefono','$email',current_date,'CURRENT_TIME','A')";
 
     if ($conexion->query($consulta) === TRUE) {
         $respuesta =  '<div class="centered-spinner">

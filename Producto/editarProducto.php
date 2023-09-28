@@ -29,7 +29,8 @@
 
     <?php
     include '../conexion.php';
-    $pro_codigo = (isset($_REQUEST['pro_codigo']) ? $_REQUEST['pro_codigo'] : '');
+    include 'global.inc';
+
 
     $consulta = "SELECT p.pro_nombre, p.pro_descrip, p.id_proveedor, p.pro_precio, p.pro_cantidad, p.pro_fechac, p.pro_categoria FROM productos p
      LEFT JOIN proveedores pv ON (pv.prov_codigo = p.id_proveedor)
@@ -67,26 +68,26 @@
                                 <h2 class="mb-4">Actualizar Producto</h2>
 
                                 <label for="usuario">producto:</label>
-                                <input type="text" class="form-control" id="pro_nombre" name="pro_nombre" value="<?= $pro_nombre; ?>">
+                                <input type="text" class="form-control" id="pro_nombre" name="nombre" value="<?= $pro_nombre; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="contrasena">Descripcion:</label>
-                                <input type="text" class="form-control" id="pro_descrip" name="pro_descrip" value="<?= $pro_descrip ?>">
+                                <input type="text" class="form-control" id="pro_descrip" name="descripcion" value="<?= $pro_descrip ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="contrasena">Precio:</label>
-                                <input type="text" class="form-control" id="pro_precio" name="pro_precio" value="<?= $pro_precio; ?>">
+                                <input type="text" class="form-control" id="pro_precio" name="precio" value="<?= $pro_precio; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="contrasena">Cantidad Productos:</label>
-                                <input type="text" class="form-control" id="pro_cantidad" name="pro_cantidad" value="<?= $pro_cantidad; ?>">
+                                <input type="text" class="form-control" id="pro_cantidad" name="cantidad_stock" value="<?= $pro_cantidad; ?>">
                             </div>
 
                             <div class="form-group">
                                 <label for="contrasena">Categoria:</label>
-                                <input type="text" class="form-control" id="pro_catego" name="pro_catego" value="<?= $pro_categoria; ?>">
+                                <input type="text" class="form-control" id="pro_catego" name="categoria" value="<?= $pro_categoria; ?>">
                             </div>
 
                             <div class="form-group">

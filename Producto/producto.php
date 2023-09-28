@@ -92,7 +92,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="proveedor">Proveedor:</label>
-                                <select class="form-control" id="proveedor" name="proveedor">
+                                <select class="form-control" id="id_proveedor" name="id_proveedor">
                                     <?= proveedor(); ?>
                                     <!-- Agrega más opciones según sea necesario -->
                                 </select>

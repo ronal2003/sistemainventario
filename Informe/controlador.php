@@ -38,16 +38,13 @@ function informe()
     WHERE $where AND pv.prov_estado = 'A'
     GROUP BY p.pro_codigo
     LIMIT $limite";
+    // echo "<pre>$consulta</pre>";
     $result = $conexion->query($consulta);
 
 
 
     // Verificar si la consulta tuvo resultados
     if ($result->num_rows > 0) {
-
-
-
-        $fila = 2;
         while ($row = $result->fetch_assoc()) {
 
             echo '<tr>';

@@ -22,18 +22,14 @@ if (isset($_POST['borrar'])) {
 function guardar()
 {
     include '../conexion.php';
-    $respuesta =
-        $nombre = (isset($_POST['nombre']) ? $_POST['nombre'] : '');
-    $descripcion = (isset($_POST['descripcion']) ? $_POST['descripcion'] : '');
-    $cantidad_stock = (isset($_POST['cantidad_stock']) ? $_POST['cantidad_stock'] : '');
-    $precio = (isset($_POST['precio']) ? $_POST['precio'] : '');
-    $categoria = (isset($_POST['categoria']) ? $_POST['categoria'] : '');
-    $proveedor = (isset($_POST['proveedor']) ? $_POST['proveedor'] : '');
+    include 'global.inc';
+    $respuesta = "";
+
 
     $consulta = "INSERT INTO productos(pro_nombre, pro_descrip, id_proveedor, pro_cantidad, pro_fechac, pro_hora,pro_precio,pro_categoria)
      VALUES ('$nombre','$descripcion','$proveedor','$cantidad_stock',current_date,'CURRENT_TIME','$precio','$categoria')";
     if ($conexion->query($consulta) === TRUE) {
-        echo '<div class="centered-spinner">
+        $respuesta =  '<div class="centered-spinner">
                 <div class="spinner-border" role="status">
                 </div>
                 <div class="mt-1 text-center">
@@ -53,13 +49,10 @@ function buscar()
 {
 
     include '../conexion.php';
-    $nombre = (isset($_POST['search']) ? $_POST['search'] : '');
+    include 'global.inc';
 
     $where = "1=1";
-    if ($nombre != "") $where = " pro_nombre LIKE '%$nombre%'";
-
-
-
+    if ($searhc != "") $where = " pro_nombre LIKE '%$searhc%'";
 
     $consulta = "SELECT * FROM productos p
     LEFT JOIN proveedores pv ON (pv.prov_codigo = p.id_proveedor)
@@ -80,7 +73,7 @@ function buscar()
             echo '<td>' . $row["pro_categoria"]  . '</td>';
             echo '<td>' . $row["pro_fechac"]  . '</td>';
             echo '<td>' . '<a href=editarProducto.php?pro_codigo=' . $row['pro_codigo'] . ' class="btn btn-primary" >Editar</a>
-            <a href=eliminarproducto.php?pro_codigo=' . $row['pro_codigo'] . '  class="btn btn-danger">Borrar</a> </td>';
+            <a href=controlador.php?pro_codigo=' . $row['pro_codigo'] . '  class="btn btn-danger" onclick="borrar();">Borrar</a> </td>';
             echo '</tr>';
         }
     } else {
@@ -93,6 +86,7 @@ function buscar()
 function proveedor()
 {
     include '../conexion.php';
+    include 'global.inc';
     $consulta = "SELECT * FROM proveedores WHERE 1=1 AND prov_estado = 'A'";
     $result = $conexion->query($consulta);
     // $resultado = $result->fetch_assoc();
@@ -113,19 +107,10 @@ function proveedor()
 function actualizar()
 {
     include '../conexion.php';
-
-    $nombre = (isset($_POST['pro_nombre']) ? $_POST['pro_nombre'] : '');
-    $pro_descrip = (isset($_POST['pro_descrip']) ? $_POST['pro_descrip'] : '');
-    $pro_cantidad = (isset($_POST['pro_cantidad']) ? $_POST['pro_cantidad'] : '');
-    $pro_precio = (isset($_POST['pro_precio']) ? $_POST['pro_precio'] : '');
-    $pro_catego = (isset($_POST['pro_catego']) ? $_POST['pro_catego'] : '');
-    $proveedor = (isset($_POST['id_proveedor']) ? $_POST['id_proveedor'] : '');
-    $pro_codigo = (isset($_POST['pro_codigo']) ? $_POST['pro_codigo'] : '');
-
-
+    include 'global.inc';
 
     // Actualiza el valor del hash en la base de datos
-    $consulta = "UPDATE productos SET pro_nombre='$nombre',pro_descrip='$pro_descrip',id_proveedor='$proveedor',pro_cantidad='$pro_cantidad',pro_precio='$pro_precio',pro_categoria='$pro_catego' WHERE pro_codigo = '$pro_codigo'";
+    $consulta = "UPDATE productos SET pro_nombre='$nombre',pro_descrip='$descripcion',id_proveedor='$proveedor',pro_cantidad='$cantidad_stock',pro_precio='$precio',pro_categoria='$categoria' WHERE pro_codigo = '$pro_codigo'";
 
     $result = mysqli_query($conexion, $consulta);
     $respuesta = "";
@@ -161,4 +146,31 @@ function actualizar()
 
 function borrar()
 {
+    include '../conexion.php';
+    include_once '../mensajes.php';
+    include 'global.inc';
+
+    $query = "DELETE FROM productos WHERE pro_codigo = '$pro_codigo'";
+    $result = mysqli_query($conexion, $query);
+
+    // Ejecutar la consulta
+    $respuesta = "";
+    if ($result) {
+        if (mysqli_affected_rows($conexion) > 0) {
+            $respuesta = '<div class="centered-spinner">
+                <div class="spinner-border" role="status">
+                </div>
+                <div class="mt-1 text-center">
+                    <span class="sr-only">Eliminando producto...</span>
+                </div>
+                </div>';
+            header("refresh:1;producto.php");
+        }
+        echo $respuesta;
+    } else {
+        echo "Error: " . mysqli_error($conexion);
+    }
+
+    // Cerrar la conexión
+    $conexion->close();
 }
